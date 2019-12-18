@@ -31,6 +31,7 @@ import { homepageBuilder } from './builder/homepage';
 import { iconsBuilder } from './builder/icons';
 import { overviewBuilder } from './generators/category-navigation';
 
+import { searchIndexBuilder } from './generators/search-index';
 import {
   internalLinksTransformerFactory,
   exampleInlineSourcesTransformerFactory,
@@ -125,6 +126,9 @@ async function buildPages(): Promise<void[]> {
 
   const allPages = await Promise.all(files);
   const overviewPages = await overviewBuilder();
+
+  // Build the search index based on the generated files.
+  await searchIndexBuilder();
 
   return [...allPages, ...overviewPages];
 }

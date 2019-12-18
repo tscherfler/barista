@@ -26,6 +26,8 @@ import {
   BaSinglePageContent,
   BaLayoutType,
   BaErrorPageContent,
+  BaPageBuilderContentResult,
+  BaSearchPageContent,
 } from '@dynatrace/barista-components/barista-definitions';
 
 const CONTENT_PATH_PREFIX = 'data/';
@@ -53,17 +55,26 @@ export class BaPageService {
   /**
    * Caches pages once they have been loaded.
    */
-  private _cache = new Map<string, Observable<BaSinglePageContent>>();
+  private _cache = new Map<string, Observable<BaPageBuilderContentResult>>();
 
   /**
    * The current page that should be displayed.
    */
-  currentPage: Observable<BaSinglePageContent>;
+  currentPage: Observable<BaPageBuilderContentResult>;
 
   constructor(private http: HttpClient, location: BaLocationService) {
     // Whenever the URL changes we try to get the appropriate doc
     this.currentPage = location.currentPath$.pipe(
       switchMap(path => this._getPage(path)),
+    );
+
+    // Populate the cache with the search page so that it is always available.
+    this._cache.set(
+      'search',
+      of({
+        layout: BaLayoutType.Search,
+        title: 'Search results',
+      } as BaSearchPageContent),
     );
   }
 
@@ -71,7 +82,7 @@ export class BaPageService {
    * Gets page from cache.
    * @param url - path to page
    */
-  private _getPage(url: string): Observable<BaSinglePageContent> {
+  private _getPage(url: string): Observable<BaPageBuilderContentResult> {
     const id = url || 'index';
     if (!this._cache.has(id)) {
       this._cache.set(id, this._fetchPage(id));
@@ -83,9 +94,9 @@ export class BaPageService {
    * Fetches page from data source.
    * @param id - page id (path).
    */
-  private _fetchPage(id: string): Observable<BaSinglePageContent> {
+  private _fetchPage(id: string): Observable<BaPageBuilderContentResult> {
     const requestPath = `${environment.dataHost}${CONTENT_PATH_PREFIX}${id}.json`;
-    const subject = new AsyncSubject<BaSinglePageContent>();
+    const subject = new AsyncSubject<BaPageBuilderContentResult>();
 
     this.http
       .get<BaSinglePageContent>(requestPath, { responseType: 'json' })
