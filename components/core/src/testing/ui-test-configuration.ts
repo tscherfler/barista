@@ -39,21 +39,23 @@ export const DT_UI_TEST_CONFIG = new InjectionToken<DtUiTestConfiguration>(
 
 /** Sets the UI-test attribute to the overlay container */
 export function dtSetUiTestAttribute(
-  element: ElementRef,
   overlay: Element,
-  config: DtUiTestConfiguration,
   overlayId: string | null,
+  componentElement?: ElementRef | Element,
+  config?: DtUiTestConfiguration,
 ): void {
-  const el: Element = coerceElement<Element>(element);
-  if (el && overlay && el.hasAttribute(config.attributeName) && overlayId) {
-    // Angular CDK hardcoded the ID for the overlay with `cdk-overlay-{uniqueIndex}`
-    const index = parseInt(overlayId.replace('cdk-overlay-', ''));
-    overlay.setAttribute(
-      config.attributeName,
-      config.constructOverlayAttributeValue(
-        el.getAttribute(config.attributeName)!,
-        index,
-      ),
-    );
+  if (componentElement && config) {
+    const element = coerceElement(componentElement);
+    if (overlay && element.hasAttribute(config.attributeName) && overlayId) {
+      // Angular CDK hardcoded the ID for the overlay with `cdk-overlay-{uniqueIndex}`
+      const index = parseInt(overlayId.replace('cdk-overlay-', ''));
+      overlay.setAttribute(
+        config.attributeName,
+        config.constructOverlayAttributeValue(
+          element.getAttribute(config.attributeName)!,
+          index,
+        ),
+      );
+    }
   }
 }

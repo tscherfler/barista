@@ -94,7 +94,8 @@ export class DtChartTooltip implements OnDestroy {
     private _overlay: Overlay,
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>,
+    /** @breaking-change: Optional will be removed with version 7.0.0 */
+    private _elementRef?: ElementRef<HTMLElement>,
     @Optional()
     @Inject(DT_UI_TEST_CONFIG)
     private _config?: DtUiTestConfiguration,
@@ -145,14 +146,12 @@ export class DtChartTooltip implements OnDestroy {
       overlayRef.attach(this._portal);
 
       this._overlayRef = overlayRef;
-      if (this._elementRef && this._config) {
-        dtSetUiTestAttribute(
-          this._elementRef,
-          this._overlayRef.overlayElement,
-          this._config,
-          this._overlayRef.overlayElement.id,
-        );
-      }
+      dtSetUiTestAttribute(
+        this._overlayRef.overlayElement,
+        this._overlayRef.overlayElement.id,
+        this._elementRef,
+        this._config,
+      );
     }
   }
 

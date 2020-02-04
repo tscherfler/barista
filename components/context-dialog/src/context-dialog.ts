@@ -200,10 +200,11 @@ export class DtContextDialog extends _DtContextDialogMixinBase
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
     private _focusTrapFactory: FocusTrapFactory,
-    private _elementRef: ElementRef<HTMLElement>,
     @Attribute('tabindex') tabIndex: string,
     // tslint:disable-next-line: no-any
     @Optional() @Inject(DOCUMENT) private _document: any,
+    /** @breaking-change: Optional will be removed with version 7.0.0 */
+    private _elementRef?: ElementRef<HTMLElement>,
     @Optional()
     @Inject(DT_UI_TEST_CONFIG)
     private _config?: DtUiTestConfiguration,
@@ -316,14 +317,12 @@ export class DtContextDialog extends _DtContextDialogMixinBase
       backdropClass: 'cdk-overlay-transparent-backdrop',
       hasBackdrop: true,
     });
-    if (this._elementRef && this._config) {
-      dtSetUiTestAttribute(
-        this._elementRef,
-        this._overlayRef.overlayElement,
-        this._config,
-        this._overlayRef.overlayElement.id,
-      );
-    }
+    dtSetUiTestAttribute(
+      this._overlayRef.overlayElement,
+      this._overlayRef.overlayElement.id,
+      this._elementRef,
+      this._config,
+    );
     this._overlayRef
       .backdropClick()
       .pipe(takeUntil(this._destroy))

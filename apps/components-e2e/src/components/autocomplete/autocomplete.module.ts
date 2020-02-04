@@ -14,28 +14,30 @@
  * limitations under the License.
  */
 
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { DtE2EAutocomplete } from './autocomplete';
 import { Route, RouterModule } from '@angular/router';
-import { DtConfirmationDialogModule } from '@dynatrace/barista-components/confirmation-dialog';
-import { DtE2EConfirmationDialog } from './confirmation-dialog';
+import { CommonModule } from '@angular/common';
+import { DtAutocompleteModule } from '@dynatrace/barista-components/autocomplete';
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
 } from 'components/core/src/testing';
+import { FormsModule } from '@angular/forms';
 
-const routes: Route[] = [{ path: '', component: DtE2EConfirmationDialog }];
+const routes: Route[] = [{ path: '', component: DtE2EAutocomplete }];
 
 @NgModule({
-  declarations: [DtE2EConfirmationDialog],
+  declarations: [DtE2EAutocomplete],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
-    DtConfirmationDialogModule,
+    DtAutocompleteModule,
   ],
   exports: [],
   providers: [
     { provide: DT_UI_TEST_CONFIG, useValue: DT_DEFAULT_UI_TEST_CONFIG },
   ],
 })
-export class DtE2EConfirmationDialogModule {}
+export class DtE2EAutocompleteModule {}

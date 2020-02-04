@@ -145,7 +145,8 @@ export class DtConfirmationDialog
     private _overlay: Overlay,
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _elementRef: ElementRef<HTMLElement>,
+    /** @breaking-change: Optional will be removed with version 7.0.0 */
+    private _elementRef?: ElementRef<HTMLElement>,
     @Optional()
     @Inject(DT_UI_TEST_CONFIG)
     private _config?: DtUiTestConfiguration,
@@ -249,14 +250,12 @@ export class DtConfirmationDialog
       },
       positionStrategy,
     });
-    if (this._elementRef && this._config) {
-      dtSetUiTestAttribute(
-        this._elementRef,
-        overlayRef.overlayElement,
-        this._config,
-        overlayRef.overlayElement.id,
-      );
-    }
+    dtSetUiTestAttribute(
+      overlayRef.overlayElement,
+      overlayRef.overlayElement.id,
+      this._elementRef,
+      this._config,
+    );
     const containerPortal = new TemplatePortal<{}>(
       this._templateRef,
       this._viewContainerRef,
