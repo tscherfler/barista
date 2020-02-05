@@ -136,14 +136,14 @@ describe('DtTagList', () => {
     });
 
     describe('getWrapperWidth', () => {
-      it('should return width 128', () => {
+      it('should return width 124', () => {
         const elements = mockHTMLElements(4);
         expect(
           getWrapperWidth(
             elements[getIndexForFirstHiddenTag(elements) - 1],
             100,
           ),
-        ).toBe(128);
+        ).toBe(124);
       });
     });
   });

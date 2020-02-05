@@ -44,7 +44,7 @@ import { DtTag } from '../tag';
 import { DtTagAdd } from '../tag-add/tag-add';
 
 const DT_TAG_LIST_HEIGHT = 32;
-const DT_TAG_LIST_LAST_TAG_SPACING = 8;
+const DT_TAG_LIST_LAST_TAG_SPACING = 4;
 
 @Component({
   selector: 'dt-tag-list',
@@ -169,10 +169,14 @@ export class DtTagList implements AfterContentInit, OnDestroy {
   /** @internal Sets the wrappers height and width properties */
   _setWrapperBoundingProperties(isCollapsed: boolean): void {
     if (isCollapsed) {
-      this._wrapperTagList.nativeElement.style.width = `${this._wrapperWidth}px`;
+      this._wrapperTagList.nativeElement.style.maxWidth = `${this
+        ._wrapperWidth!}px`;
+      this._wrapperTagList.nativeElement.style.minWidth = `${this
+        ._wrapperWidth!}px`;
       this._wrapperTagList.nativeElement.style.height = `${DT_TAG_LIST_HEIGHT}px`;
     } else {
-      this._wrapperTagList.nativeElement.style.width = '';
+      this._wrapperTagList.nativeElement.style.maxWidth = '';
+      this._wrapperTagList.nativeElement.style.minWidth = '';
       this._wrapperTagList.nativeElement.style.height = 'auto';
     }
   }
@@ -195,6 +199,13 @@ export class DtTagList implements AfterContentInit, OnDestroy {
       subscribtion.unsubscribe();
     });
     this._tagAddSubscriptions = [];
+  }
+
+  /**
+   * @internal evaluates whether to display the x more button
+   */
+  _toDisplayMoreButton(): boolean {
+    return !this._isOneLine && !this._showAllTags;
   }
 }
 
