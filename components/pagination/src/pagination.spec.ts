@@ -404,12 +404,12 @@ export class DefaultPagination {
       [length]="length"
       [pageSize]="pageSize"
       [currentPage]="currentPage"
-      [aria-label-previous]="ariaPreviousLabel"
-      [aria-label-next]="ariaNextLabel"
+      [ariaLabelPrevious]="ariaPreviousLabel"
+      [ariaLabelNext]="ariaNextLabel"
       [aria-label]="ariaLabel"
-      [aria-label-ellipses]="ariaEllipses"
-      [aria-label-page]="ariaPageLabel"
-      [aria-label-current]="ariaCurrentLabel"
+      [ariaLabelEllipses]="ariaEllipses"
+      [ariaLabelPage]="ariaPageLabel"
+      [ariaLabelCurrent]="ariaCurrentLabel"
       (changed)="onChange($event)"
     ></dt-pagination>
   `,
