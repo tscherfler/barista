@@ -145,7 +145,7 @@ export class DtConfirmationDialog
     private _overlay: Overlay,
     private _viewContainerRef: ViewContainerRef,
     private _changeDetectorRef: ChangeDetectorRef,
-    /** @breaking-change: Optional will be removed with version 7.0.0 */
+    /** @breaking-change: `_elementRef` will be mandatory with version 7.0.0 */
     private _elementRef?: ElementRef<HTMLElement>,
     @Optional()
     @Inject(DT_UI_TEST_CONFIG)

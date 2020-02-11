@@ -203,7 +203,7 @@ export class DtContextDialog extends _DtContextDialogMixinBase
     @Attribute('tabindex') tabIndex: string,
     // tslint:disable-next-line: no-any
     @Optional() @Inject(DOCUMENT) private _document: any,
-    /** @breaking-change: Optional will be removed with version 7.0.0 */
+    /** @breaking-change: `_elementRef` will be mandatory with version 7.0.0 */
     private _elementRef?: ElementRef<HTMLElement>,
     @Optional()
     @Inject(DT_UI_TEST_CONFIG)
