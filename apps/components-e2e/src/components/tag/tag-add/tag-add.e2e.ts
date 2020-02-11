@@ -20,7 +20,7 @@ fixture('Tag Add').page('http://localhost:4200/tag/tag-add');
 
 test('should propagate attribute to overlay', async (testController: TestController) => {
   await testController
-    .click(tagAdd)
+    .click(tagAdd, { speed: 0.1 })
     .expect(overlayPane.getAttribute('dt-ui-test-id'))
     .contains('tag-add-overlay');
 });

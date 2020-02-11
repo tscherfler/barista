@@ -22,7 +22,7 @@ import { DtE2EConfirmationDialog } from './confirmation-dialog';
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
-} from 'components/core/src/testing';
+} from '@dynatrace/barista-components/core';
 
 const routes: Route[] = [{ path: '', component: DtE2EConfirmationDialog }];
 

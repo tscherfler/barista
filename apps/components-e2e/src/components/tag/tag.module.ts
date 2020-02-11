@@ -21,7 +21,7 @@ import { RouterModule, Route } from '@angular/router';
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
-} from 'components/core/src/testing';
+} from '@dynatrace/barista-components/core';
 import { DtTagModule } from '@dynatrace/barista-components/tag';
 
 const routes: Route[] = [{ path: 'tag-add', component: DtE2ETagAdd }];
@@ -34,4 +34,4 @@ const routes: Route[] = [{ path: 'tag-add', component: DtE2ETagAdd }];
     { provide: DT_UI_TEST_CONFIG, useValue: DT_DEFAULT_UI_TEST_CONFIG },
   ],
 })
-export class DtE2ETagAddModule {}
+export class DtE2ETagModule {}

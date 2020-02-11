@@ -20,7 +20,7 @@ fixture('Select').page('http://localhost:4200/select');
 
 test('should propagate attribute to overlay', async (testController: TestController) => {
   await testController
-    .click(select)
+    .click(select, { speed: 0.3 })
     .expect(overlayPane.getAttribute('dt-ui-test-id'))
     .contains('select-overlay');
 });

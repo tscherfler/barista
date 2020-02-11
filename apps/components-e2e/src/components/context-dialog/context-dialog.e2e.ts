@@ -27,7 +27,7 @@ fixture('Context Dialog').page('http://localhost:4200/context-dialog');
 
 test('should open the context dialog when not disabled', async (testController: TestController) => {
   await testController
-    .click(contextDialog, { speed: 0.5 })
+    .click(contextDialog, { speed: 0.3 })
     .expect(contextDialogPanel.exists)
     .ok()
     .expect(contextDialogPanel.visible)
@@ -36,7 +36,7 @@ test('should open the context dialog when not disabled', async (testController: 
 
 test('should not execute click handlers when disabled', async (testController: TestController) => {
   await testController
-    .click(disableToggle, { speed: 0.5 })
+    .click(disableToggle, { speed: 0.3 })
     .click(contextDialog)
     .expect(contextDialogPanel.exists)
     .notOk();
@@ -44,7 +44,7 @@ test('should not execute click handlers when disabled', async (testController: T
 
 test('should trap the focus inside the overlay', async (testController: TestController) => {
   await testController
-    .click(contextDialog, { speed: 0.5 })
+    .click(contextDialog, { speed: 0.3 })
     .expect(getActiveElementText())
     .eql('Edit')
     .pressKey('tab')
@@ -54,19 +54,19 @@ test('should trap the focus inside the overlay', async (testController: TestCont
 
 test('should open and close the context dialog', async (testController: TestController) => {
   await testController
-    .click(contextDialog, { speed: 0.5 })
+    .click(contextDialog, { speed: 0.3 })
     .expect(contextDialogPanel.exists)
     .ok()
     .expect(contextDialogPanel.visible)
     .ok()
-    .click(backdrop, { speed: 0.5 })
+    .click(backdrop, { speed: 0.3 })
     .expect(contextDialogPanel.exists)
     .notOk();
 });
 
 test('should propagate attribute to overlay', async (testController: TestController) => {
   await testController
-    .click(contextDialog, { speed: 0.5 })
+    .click(contextDialog, { speed: 0.3 })
     .expect(overlayPane.getAttribute('dt-ui-test-id'))
     .contains('context-dialog-overlay');
 });

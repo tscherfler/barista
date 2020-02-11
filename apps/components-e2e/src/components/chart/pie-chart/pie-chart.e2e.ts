@@ -48,8 +48,7 @@ test('should get the correct overlay values when hovering on the different pies'
     .hover(pieChart, { speed: 0.3, offsetX: 580, offsetY: 80 })
     .expect(tooltip.textContent)
     .match(/15/)
-    .hover(pieChart, { speed: 0.3, offsetX: 620, offsetY: 140 })
-    .wait(1000)
+    .hover(pieChart, { speed: 0.1, offsetX: 620, offsetY: 140 })
     .expect(tooltip.textContent)
     .match(/55/);
 });

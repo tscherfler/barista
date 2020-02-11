@@ -24,7 +24,7 @@ import { PieChart } from './pie-chart/pie-chart';
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
-} from 'components/core/src/testing';
+} from '@dynatrace/barista-components/core';
 
 const routes: Route[] = [
   { path: '', component: BasicChart },

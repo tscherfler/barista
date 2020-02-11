@@ -36,7 +36,7 @@ test('should show an overlay containing custom content while hovering and hide i
 
 test('should propagate attribute to overlay', async (testController: TestController) => {
   await testController
-    .hover(consumption)
+    .hover(consumption, { speed: 0.1 })
     .expect(overlayPane.getAttribute('dt-ui-test-id'))
     .contains('consumption-overlay');
 });

@@ -101,7 +101,6 @@ test('should propagate attribute to overlay', async (testController: TestControl
     .expect(successDialog.count)
     .eql(0)
     .click(openDialogButton)
-    .wait(40000)
     .expect(overlayPane.getAttribute('dt-ui-test-id'))
     .contains('confirmation-dialog-overlay');
 });

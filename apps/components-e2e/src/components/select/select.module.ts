@@ -5,7 +5,7 @@ import { DtSelectModule } from '@dynatrace/barista-components/select';
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
-} from 'components/core/src/testing';
+} from '@dynatrace/barista-components/core';
 import { DtE2ESelect } from './select';
 
 const routes: Route[] = [{ path: '', component: DtE2ESelect }];

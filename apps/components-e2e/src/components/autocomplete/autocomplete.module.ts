@@ -22,7 +22,7 @@ import { DtAutocompleteModule } from '@dynatrace/barista-components/autocomplete
 import {
   DT_UI_TEST_CONFIG,
   DT_DEFAULT_UI_TEST_CONFIG,
-} from 'components/core/src/testing';
+} from '@dynatrace/barista-components/core';
 import { FormsModule } from '@angular/forms';
 
 const routes: Route[] = [{ path: '', component: DtE2EAutocomplete }];

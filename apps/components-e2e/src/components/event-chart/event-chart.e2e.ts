@@ -23,7 +23,7 @@ import {
   triggerChangeDetection,
 } from './event-chart.po';
 
-fixture.only('EventChart').page('http://localhost:4200/event-chart');
+fixture('EventChart').page('http://localhost:4200/event-chart');
 
 test('should show overlay when hovered', async (testController: TestController) => {
   // Hover over the first event.
